@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+:root {
+    --primary-bg: #1A1D24; /* Used for the semi-transparent background cards of the status windows. It is never pure black, allowing objects behind the screen to remain faintly visible. */
+    --secondary-bg: #242831; /* same as primary-bg description */
+    --border-solid: #3B4454;  /* Used for solid borders, unselected menu tabs, grid lines, and decorative frame corners. */
+    --secondary-border-solid: #4D596F; /* same as border solid description */
+    --primary-text-stroke: #00F0FF; /* The primary color for main headers, level numbers, active stat points, and the outer "neon glare" of the windows. */
+    --primary-body-text: #38BDF8; /* Used for body text, descriptive labels, and standard notification alerts (e.g., "You have unread mail"). */
+    --primary-text-color: #F8FAFC; /* The stark white core used for text characters. It is almost always paired with an outer cyan glow to prevent the text from blending into bright environments. */
+    --warning-text-color: #DC2626; /*Critical Warnings & System Alerts  */
+    --vivid-warning-text-color: #F97316; /* Used for emergency countdown timers, threat level assessments, or specific quest restriction text. */
+    --rewards-text-legendary-color: #F59E0B; /* Used strictly for high-tier item ranks (S-rank or Legendary items), Title names, and unlocking rare job advancements. */
+    --rewards-text-legendary-color2: #FBBF24; /* same as --rewards-text-legendary-color */
+    --mana-text-color: #10B981; /* Design Implementation Tip To recreate this theme in digital design or UI development,
+     use a Dark Mode base layout, apply a heavy Gaussian blur filter behind your panels, and set the cyan text layer styles to
+      Screen or Linear Dodge (Add) blend modes to create that signature holographic light emission. */  
+
+}
+
+body {
+    background-color: var(--primary-bg);
+    font-family: "Zen Dots", sans-serif;
+    color: var(--primary-text-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+}
