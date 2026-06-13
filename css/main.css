@@ -24,3 +24,14 @@
     padding: 0;
     margin: 0;
 }
+
+.nav-item a:hover{
+    color: var(--primary-text-stroke);
+    background-color: var(--primary-bg);
+}
+
+.nav-item.active a{
+    color: var(--primary-text-stroke);
+    border-left: 3px solid var(--primary-text-stroke);
+    background-color: var(--primary-bg);
+}
