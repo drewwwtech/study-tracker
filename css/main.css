@@ -1,0 +1,26 @@
+#app {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 220px;
+    background-color: var(--secondary-bg);
+}
+
+#main-content {
+    flex: 1;
+}
+
+.nav-item a{
+    color: var(--primary-text-color);
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+}
+
+#sidebar ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
