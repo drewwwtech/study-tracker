@@ -35,3 +35,26 @@
     border-left: 3px solid var(--primary-text-stroke);
     background-color: var(--primary-bg);
 }
+
+#sidebar-header{
+    padding: 20px;
+    border-bottom: 2px solid var(--border-solid);
+    text-align: center;
+}
+
+#sidebar-header h1{
+    font-size: 1.2rem;
+    color: var(--primary-text-stroke);
+    margin: 0 0 10px 0;
+}
+
+#player-name {
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+#player-level {
+    font-size: 0.85rem;
+    color: var(--primary-body-text);
+    margin: 5px 0;
+}
