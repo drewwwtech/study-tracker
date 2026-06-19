@@ -12,7 +12,7 @@
     --vivid-warning-text-color: #F97316; /* Used for emergency countdown timers, threat level assessments, or specific quest restriction text. */
     --rewards-text-legendary-color: #F59E0B; /* Used strictly for high-tier item ranks (S-rank or Legendary items), Title names, and unlocking rare job advancements. */
     --rewards-text-legendary-color2: #FBBF24; /* same as --rewards-text-legendary-color */
-    --mana-text-color: #10B981; /* Design Implementation Tip To recreate this theme in digital design or UI development,
+    --stats-text-color: #10B981; /* Design Implementation Tip To recreate this theme in digital design or UI development,
      use a Dark Mode base layout, apply a heavy Gaussian blur filter behind your panels, and set the cyan text layer styles to
       Screen or Linear Dodge (Add) blend modes to create that signature holographic light emission. */  
 

@@ -10,6 +10,9 @@
 
 #main-content {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-item a{
@@ -57,4 +60,67 @@
     font-size: 0.85rem;
     color: var(--primary-body-text);
     margin: 5px 0;
+}
+
+#timer-view {
+    background: rgba(36, 40, 49, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-solid);
+    border-radius: 16px;
+    text-align: center;
+    padding: 40px;
+}
+
+#timer-display {
+    font-size: 5rem;
+    color: var(--primary-text-stroke);
+    text-shadow: 0 0 20px var(--primary-text-stroke);
+    margin: 20px 0;
+    letter-spacing: 4px;
+}
+
+#timer-mode {
+    color: var(--primary-text-stroke);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+#timer-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#timer-controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+#timer-controls button:hover {
+    opacity: 0.8;
+}
+
+#start-btn {
+    background-color: var(--stats-text-color) !important;
+    color: var(--primary-bg) !important;
+    border: 2px solid var(--stats-text-color) !important;
+    box-shadow: 0 0 10px var(--stats-text-color) !important;
+}
+
+#pause-btn {
+    background-color: transparent;
+    color: var(--primary-text-stroke);
+    border: 1px solid var(--primary-text-stroke) !important;
+}
+
+#end-btn {
+    background-color: var(--warning-text-color);
+    color: var(--primary-text-color);
 }
