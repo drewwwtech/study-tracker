@@ -1,6 +1,31 @@
 import { Player } from './player.js'
 import { Timer } from './timer.js'
 
+function loadSubjects() {
+    let subjects = JSON.parse(localStorage.getItem("subjects")) || 
+        ["Python", "C", "NetAcad", "Project", "School"]
+
+    let select = document.getElementById("subject-select")
+    // clear existing options except "add-new"
+    select.innerHTML = '<option value="add-new">+ Add Subject...</option>'
+
+    let addNewOption = select.querySelector('option[value="add-new"]')
+
+    subjects.forEach(subject => {
+        let option = document.createElement("option")
+        option.value = subject
+        option.textContent = subject
+        select.insertBefore(option, addNewOption)
+    })
+
+    if (subjects.length > 0) {
+        select.value = subjects[0]
+    }
+
+}
+
+loadSubjects()
+
 let hunter = new Player ("Hunter")
 hunter.gainExp(150)
 
@@ -59,4 +84,14 @@ document.getElementById("save-subject-btn").addEventListener("click", () => {
     select.value = newSubject
     document.getElementById("new-subject-input").classList.add("hidden")
     document.getElementById("new-subject-name").value = "" // clear the input
+
+    let subjects = JSON.parse(localStorage.getItem("subjects")) ||
+        ["Python", "C", "NetAcad", "Project", "School"]
+
+    // add new subjects to the array
+    subjects.push(newSubject)
+
+    // save back to localStorage
+    localStorage.setItem("subjects", JSON.stringify(subjects))
+
 })
