@@ -31,3 +31,9 @@ document.getElementById("pause-btn").addEventListener("click", () => {
     pomodoro.pause()
     clearInterval(intervalid)
 })
+
+document.getElementById("end-btn").addEventListener("click", () => {
+    pomodoro.pause()
+    clearInterval(intervalid)
+    console.log("Session Ended")
+})
