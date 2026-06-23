@@ -11,10 +11,12 @@ let pomodoro = new Timer()
 let intervalid = null
 
 document.getElementById("start-btn").addEventListener("click", () => {
+    if (pomodoro.isRunning) return // ignore clicking if its already running.
+
     clearInterval(intervalid)
     pomodoro.start()
 
-    setInterval(() => {
+    intervalid = setInterval(() => {
         pomodoro.tick()
         document.getElementById("timer-display").textContent = pomodoro.getFormattedTime()
     }, 1000)
