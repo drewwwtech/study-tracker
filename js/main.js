@@ -18,7 +18,12 @@ document.getElementById("start-btn").addEventListener("click", () => {
 
     intervalid = setInterval(() => {
         pomodoro.tick()
+        document.getElementById("timer-mode").textContent =
+            pomodoro.mode === "study" ? "Study Session" :
+            pomodoro.mode === "shortBreak" ? "Short Break" : "Long Break"
         document.getElementById("timer-display").textContent = pomodoro.getFormattedTime()
+        document.getElementById("session-count").textContent =
+            `Session completed: ${pomodoro.sessionCompleted}`
     }, 1000)
 })
 
