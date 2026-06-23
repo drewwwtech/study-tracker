@@ -126,7 +126,7 @@
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 #session-modal {
@@ -199,4 +199,16 @@
 
 #submit-session:hover {
     opacity: 0.8;
+}
+
+#save-subject-btn {
+    background-color: var(--primary-text-stroke);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.75rem;
+    cursor: pointer;
+    margin-top: 8px;
 }

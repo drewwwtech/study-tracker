@@ -35,5 +35,28 @@ document.getElementById("pause-btn").addEventListener("click", () => {
 document.getElementById("end-btn").addEventListener("click", () => {
     pomodoro.pause()
     clearInterval(intervalid)
-    console.log("Session Ended")
+    document.getElementById("session-modal").classList.remove("hidden") // to show modal
+})
+
+document.getElementById("subject-select").addEventListener("change", () => {
+    if (document.getElementById("subject-select").value === "add-new") {
+        document.getElementById("new-subject-input").classList.remove("hidden")
+    } else {
+        document.getElementById("new-subject-input").classList.add("hidden")
+    }
+})
+
+document.getElementById("save-subject-btn").addEventListener("click", () => {
+    let newSubject = document.getElementById("new-subject-name").value
+    let option = document.createElement("option")
+    option.value = newSubject
+    option.textContent = newSubject
+
+    let select = document.getElementById("subject-select")
+    let addNewOption = select.querySelector('option[value="add-new"]')
+    select.insertBefore(option, addNewOption)
+
+    select.value = newSubject
+    document.getElementById("new-subject-input").classList.add("hidden")
+    document.getElementById("new-subject-name").value = "" // clear the input
 })
