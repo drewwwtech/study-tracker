@@ -101,6 +101,22 @@ document.getElementById("submit-session").addEventListener("click", () => {
     let learned = document.getElementById("journal-learned").value
     let difficulty = document.getElementById("journal-difficulty").value
 
+    let xpEarned = 50 + (pomodoro.sessionCompleted * 10)
+    hunter.gainExp(xpEarned)
+
+    // update subject stat
+    hunter.updateSubject(subject, pomodoro.sessionCompleted)
+
+    // update streak
+    hunter.updateStreak()
+
+    // update sidebar display
+    document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
+
+    //hide modal
+    document.getElementById("session-modal").classList.add("hidden")
+
+    console.log("XP earned:", xpEarned, "Player:", hunter)
 
     console.log(subject, learned, difficulty)
 })
