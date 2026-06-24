@@ -13,6 +13,9 @@ export class Player {
     }
 
     updateSubject(subjectName, amount) {
+        if (this.subjects[subjectName] === undefined) {
+            this.subjects[subjectName] = 0 // create if doesnt exist
+        }
         this.subjects[subjectName] += amount
     }
 
