@@ -21,16 +21,45 @@ function loadSubjects() {
     if (subjects.length > 0) {
         select.value = subjects[0]
     }
+}
 
+function savePlayer() {
+    localStorage.setItem("player", JSON.stringify({
+        name: hunter.name,
+        level: hunter.level,
+        currentXP: hunter.currentXP,
+        xpToNextLevel: hunter.xpToNextLevel,
+        subjects: hunter.subjects,
+        currentStreak: hunter.currentStreak,
+        longestStreak: hunter.longestStreak,
+        lastStudyDate: hunter.lastStudyDate,
+        rewardHistory: hunter.rewardHistory
+    }))
+}
+
+function loadPlayer() {
+    let saved = JSON.parse(localStorage.getItem("player"))
+    if(saved) {
+        hunter.name = saved.name
+        hunter.level = saved.level
+        hunter.currentXP = saved.currentXP
+        hunter.xpToNextLevel = saved.xpToNextLevel
+        hunter.subjects = saved.subjects
+        hunter.currentStreak = saved.currentStreak
+        hunter.longestStreak = saved.longestStreak
+        hunter.lastStudyDate = saved.lastStudyDate
+        hunter.rewardHistory = saved.rewardHistory
+    }
 }
 
 loadSubjects()
 
 let hunter = new Player ("Hunter")
-hunter.gainExp(150)
+loadPlayer()
 
 document.getElementById("player-name").textContent = hunter.name
 document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
+
 
 let pomodoro = new Timer()
 let intervalid = null
@@ -119,4 +148,6 @@ document.getElementById("submit-session").addEventListener("click", () => {
     console.log("XP earned:", xpEarned, "Player:", hunter)
 
     console.log(subject, learned, difficulty)
+
+    savePlayer()
 })
