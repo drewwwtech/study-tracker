@@ -95,3 +95,12 @@ document.getElementById("save-subject-btn").addEventListener("click", () => {
     localStorage.setItem("subjects", JSON.stringify(subjects))
 
 })
+
+document.getElementById("submit-session").addEventListener("click", () => {
+    let subject = document.getElementById("subject-select").value
+    let learned = document.getElementById("journal-learned").value
+    let difficulty = document.getElementById("journal-difficulty").value
+
+
+    console.log(subject, learned, difficulty)
+})
