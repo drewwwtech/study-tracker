@@ -52,6 +52,21 @@ function loadPlayer() {
     }
 }
 
+function switchView(viewName) {
+    // hide all views
+    document.querySelectorAll('.view').forEach(view => {
+        view.classList.add('hidden')
+    })
+
+    // show the selected view
+    document.getElementById(`${viewName}-view`).classList.remove('hidden')
+
+    //update active nav item
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active')
+    })
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
@@ -150,4 +165,13 @@ document.getElementById("submit-session").addEventListener("click", () => {
     console.log(subject, learned, difficulty)
 
     savePlayer()
+})
+
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault() // prevent the # jump
+        let viewName = item.querySelector('a').textContent.toLowerCase()
+        switchView(viewName)
+        item.classList.add('active')
+    })
 })
