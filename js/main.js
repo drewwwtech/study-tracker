@@ -67,6 +67,22 @@ function switchView(viewName) {
     })
 }
 
+function getRank(level) {
+    if (level >= 1 && level <= 15) {
+        return "E"
+    } else if (level >= 16 && level <= 30) {
+        return "D"
+    } else if (level >= 31 && level <= 55) {
+        return "C"
+    } else if (level >= 56 && level <= 70) {
+        return "B"
+    } else if (level >= 71 && level <= 85) {
+        return "A"
+    } else {
+        return "S"
+    } 
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
