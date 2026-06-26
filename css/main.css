@@ -212,3 +212,62 @@
     cursor: pointer;
     margin-top: 8px;
 }
+
+#profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#profile-name {
+    color: var(--primary-text-stroke);
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px var(--primary-text-stroke);
+    padding: 10px;
+}
+
+#profile-rank-badge{
+    color: var(--rewards-text-legendary-color);
+    border: 1px solid var(--rewards-text-legendary-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+#xp-bar-container {
+    background: var(--border-solid);
+    border-radius: 10px;
+    height: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+#xp-bar {
+    height: 100%;
+    background: var(--primary-text-stroke);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+#profile-streak-section {
+    margin: 20px 0;
+    color: var(--primary-body-text);
+    font-size: 0.85rem;
+}
+
+#profile-subjects h3 {
+    color: var(--primary-text-stroke);
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.subject-stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-solid);
+    color: var(--primary-body-text);
+    font-size: 0.85rem;
+}
