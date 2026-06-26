@@ -83,10 +83,37 @@ function getRank(level) {
     } 
 }
 
+function updateProfileView() {
+    document.getElementById("profile-name").textContent = hunter.name
+    document.getElementById("profile-rank").textContent = getRank(hunter.level)
+    document.getElementById("profile-level").textContent = hunter.level
+    document.getElementById("xp-text").textContent = `${hunter.currentXP} / ${hunter.xpToNextLevel} XP`
+    document.getElementById("profile-streak").textContent = hunter.currentStreak
+    document.getElementById("profile-longest-streak").textContent = hunter.longestStreak
+
+    // XP bar width as percentage
+    let xpPercent = (hunter.currentXP / hunter.xpToNextLevel) * 100
+    document.getElementById("xp-bar").style.width = `${xpPercent}%`
+
+    // build subject stats dynamically
+    let subjectList = document.getElementById("subjects-stats-list")
+    subjectList.innerHTML = ""
+
+    Object.entries(hunter.subjects).forEach(([subject, points]) => {
+        subjectList.innerHTML += `
+            <div class="subject-stat">
+                <span>${subject}</span>
+                <span>${points} pts</span>
+            </div>
+        `
+    })
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
 loadPlayer()
+updateProfileView()
 
 document.getElementById("player-name").textContent = hunter.name
 document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
@@ -176,11 +203,8 @@ document.getElementById("submit-session").addEventListener("click", () => {
     //hide modal
     document.getElementById("session-modal").classList.add("hidden")
 
-    console.log("XP earned:", xpEarned, "Player:", hunter)
-
-    console.log(subject, learned, difficulty)
-
     savePlayer()
+    updateProfileView()
 })
 
 document.querySelectorAll('.nav-item').forEach(item => {
