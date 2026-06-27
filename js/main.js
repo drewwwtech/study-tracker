@@ -265,3 +265,19 @@ document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.add('active')
     })
 })
+
+document.getElementById("claim-reward-btn").addEventListener("click", () => {
+    document.getElementById("reward-modal").classList.add("hidden")
+
+    // reset timer for next session
+    pomodoro.pause()
+    clearInterval(intervalid)
+    pomodoro.mode = "study"
+    pomodoro.timeLeft = pomodoro.studyDuration
+    pomodoro.sessionCompleted = 0
+
+    document.getElementById("timer-display").textContent = pomodoro.getFormattedTime()
+    document.getElementById("timer-mode").textContent = "Study Session"
+    document.getElementById("session-count").textContent = "Session complete: 0"
+
+})
