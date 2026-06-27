@@ -349,3 +349,97 @@
     cursor: pointer;
     width: 100%;
 }
+
+#rewards-view {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 60px;
+}
+
+#rewards-panel {
+    background: rgba(36, 40, 49, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-solid);
+    border-radius: 16px;
+    padding: 40px;
+    width: 600px;
+}
+
+#rewards-panel h2 {
+    color: var(--primary-text-stroke);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#unclaimed-section h3,
+#history-section h3 {
+    color: var(--primary-body-text);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-solid);
+    padding-bottom: 8px;
+}
+
+#history-section {
+    margin-top: 30px;
+}
+
+
+.reward-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--primary-bg);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-solid);
+}
+
+.reward-card-name {
+    color: var(--primary-text-color);
+    font-size: 0.9rem;
+    display: block;
+}
+
+.reward-card-meta {
+    color: var(--primary-body-text);
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 4px;
+}
+
+.use-reward-btn {
+    background-color: var(--stats-text-color);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-solid);
+    color: var(--primary-body-text);
+    font-size: 0.85rem;
+}
+
+.history-date {
+    color: var(--primary-text-stroke);
+    font-size: 0.75rem;
+}
+
+.empty-msg {
+    color: var(--border-solid);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 20px 0;
+}
