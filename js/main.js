@@ -233,6 +233,10 @@ document.getElementById("submit-session").addEventListener("click", () => {
     //hide modal
     document.getElementById("session-modal").classList.add("hidden")
 
+    let reward = rollReward()
+    hunter.unclaimedRewards.push(reward)
+    
+
     savePlayer()
     updateProfileView()
 })
