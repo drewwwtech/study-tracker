@@ -63,7 +63,8 @@ function savePlayer() {
         currentStreak: hunter.currentStreak,
         longestStreak: hunter.longestStreak,
         lastStudyDate: hunter.lastStudyDate,
-        rewardHistory: hunter.rewardHistory
+        rewardHistory: hunter.rewardHistory,
+        unclaimedRewards: hunter.unclaimedRewards
     }))
 }
 
@@ -79,6 +80,7 @@ function loadPlayer() {
         hunter.longestStreak = saved.longestStreak
         hunter.lastStudyDate = saved.lastStudyDate
         hunter.rewardHistory = saved.rewardHistory
+        hunter.unclaimedRewards = saved.unclaimedRewards
     }
 }
 
@@ -154,11 +156,66 @@ function showReward(reward) {
     document.getElementById("reward-modal").classList.remove("hidden")
 }
 
+function updateRewardsView() {
+    let unclaimedList = document.getElementById("unclaimed-list")
+    let historyList = document.getElementById("history-list")
+
+    // build unclaimed rewards
+    unclaimedList.innerHTML = ""
+    if (hunter.unclaimedRewards.length === 0) {
+        unclaimedList.innerHTML = "<p class='empty-msg'>No unclaimed rewards. Complete a session to earn one!</p>"
+    } else {
+        hunter.unclaimedRewards.forEach((reward, index) => {
+            unclaimedList.innerHTML += `
+                <div class="reward-card">
+                    <div class="reward-card-info">
+                        <span class="reward-card-name">${reward.name}</span>
+                        <span class="reward-card-meta">${reward.rarity} • ${reward.duration}</span>
+                    </div>
+                    <button class="use-reward-btn" data-index="${index}">Use</button>
+                </div>
+            `
+        })
+    }
+
+    // build reward history
+    historyList.innerHTML = ""
+    if (hunter.rewardHistory.length === 0) {
+        historyList.innerHTML = "<p class='empty-msg'>No rewards used yet.</p>"
+    } else {
+        hunter.rewardHistory.forEach(reward => {
+            historyList.innerHTML += `
+                <div class="history-item">
+                    <span>${reward.name}</span>
+                    <span class="history-date">${reward.usedDate}</span>
+                </div>
+            `
+        })
+    }
+
+    // wireup Use buttons
+    document.querySelectorAll(".use-reward-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            let index = parseInt(e.target.dataset.index)
+            let reward = hunter.unclaimedRewards[index]
+
+            // move to history with date
+            reward.usedDate = new Date().toISOString().split('T')[0]
+            hunter.rewardHistory.push(reward)
+            hunter.unclaimedRewards.splice(index, 1)
+
+            savePlayer()
+            updateRewardsView()
+        })
+    })
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
 loadPlayer()
 updateProfileView()
+updateRewardsView()
 
 document.getElementById("player-name").textContent = hunter.name
 document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
@@ -255,6 +312,7 @@ document.getElementById("submit-session").addEventListener("click", () => {
     savePlayer()
     updateProfileView()
     showReward(reward)
+    updateRewardsView()
 })
 
 document.querySelectorAll('.nav-item').forEach(item => {
