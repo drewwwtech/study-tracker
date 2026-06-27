@@ -210,12 +210,46 @@ function updateRewardsView() {
     })
 }
 
+function loadNotes() {
+    let notes = JSON.parse(localStorage.getItem("notes")) || []
+    let notesList = document.getElementById("notes-list")
+    notesList.innerHTML = ""
+
+    if (notes.length === 0) {
+        notesList.innerHTML = "<p class='empty-msg'>No notes yet. Write something!</p>"
+        return
+    }
+
+    notes.forEach((note, index) => {
+        notesList.innerHTML += `
+            <div class="note-card">
+                <div class="note-contents">${note.text}</div>
+                <div class="note-footer">
+                    <span class="note-date">${note.date}</span>
+                    <button class="delete-note-btn" data-index="${index}">Delete</button>
+                </div>
+            </div>
+        `
+    })
+
+    document.querySelectorAll(".delete-note-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            let index = parseInt(e.target.dataset.index)
+            notes.splice(index, 1)
+            localStorage.setItem("notes", JSON.stringify(notes))
+            loadNotes()
+        })
+    })
+
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
 loadPlayer()
 updateProfileView()
 updateRewardsView()
+loadNotes()
 
 document.getElementById("player-name").textContent = hunter.name
 document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
@@ -337,5 +371,19 @@ document.getElementById("claim-reward-btn").addEventListener("click", () => {
     document.getElementById("timer-display").textContent = pomodoro.getFormattedTime()
     document.getElementById("timer-mode").textContent = "Study Session"
     document.getElementById("session-count").textContent = "Session complete: 0"
+})
 
+document.getElementById("save-note-btn").addEventListener("click", () => {
+    let text = document.getElementById("note-input").value.trim()
+    if (!text) return // don't save empty notes
+
+    let notes = JSON.parse(localStorage.getItem("notes")) || []
+    notes.unshift({ // unshifts adds to beginning, so newest notes appear first
+        text: text,
+        date: new Date().toISOString().split('T')[0]
+    })
+
+    localStorage.setItem("notes", JSON.stringify(notes))
+    document.getElementById("note-input").value = ""
+    loadNotes()
 })
