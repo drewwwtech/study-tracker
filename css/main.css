@@ -288,3 +288,64 @@
     color: var(--primary-body-text);
     font-size: 0.85rem;
 }
+
+#reward-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+#reward-content {
+    background: rgba(36, 40, 49, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--primary-text-stroke);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+}
+
+#reward-content h2 {
+    color: var(--primary-text-stroke);
+    margin-bottom: 20px;
+}
+
+#reward-rarity {
+    font-size: 0.85rem;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+#reward-name {
+    font-size: 1.3rem;
+    color: var(--primary-text-color);
+    margin-bottom: 10px;
+}
+
+#reward-duration {
+    color: var(--primary-body-text);
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+}
+
+#claim-reward-btn {
+    background-color: var(--stats-text-color);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    width: 100%;
+}

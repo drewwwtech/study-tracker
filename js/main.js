@@ -139,6 +139,21 @@ function updateProfileView() {
     })
 }
 
+function showReward(reward) {
+    let rarityColors = {
+        "Common": "var(--primary-body-text)",
+        "Rare": "var(--rewards-text-legendary-color)",
+        "Legendary": "var(--vivid-warning-text-color)"
+    }
+    document.getElementById("reward-rarity").textContent = reward.rarity
+    document.getElementById("reward-rarity").style.color = rarityColors[reward.rarity]
+    document.getElementById("reward-rarity").style.border = `1px solid ${rarityColors[reward.rarity]}`
+    document.getElementById("reward-name").textContent = reward.name
+    document.getElementById("reward-type").textContent = reward.type
+    document.getElementById("reward-duration").textContent = reward.duration
+    document.getElementById("reward-modal").classList.remove("hidden")
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
@@ -239,6 +254,7 @@ document.getElementById("submit-session").addEventListener("click", () => {
 
     savePlayer()
     updateProfileView()
+    showReward(reward)
 })
 
 document.querySelectorAll('.nav-item').forEach(item => {
