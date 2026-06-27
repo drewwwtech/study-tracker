@@ -1,6 +1,36 @@
 import { Player } from './player.js'
 import { Timer } from './timer.js'
 
+const REWARDS = [
+    { name: "Game Pass", type: "Gaming", rarity: "Common", duration: "30 mins" },
+    { name: "Extended Game Pass", type: "Gaming", rarity: "Rare", duration: "1 hour" },
+    { name: "Episode Pass", type: "Watch", rarity: "Common", duration: "1 episode" },
+    { name: "Movie Pass", type: "Watch", rarity: "Rare", duration: "2 hours" },
+    { name: "Snack Pass", type: "Food", rarity: "Common", duration: "Enjoy a snack" },
+    { name: "Nap Pass", type: "Rest", rarity: "Common", duration: "20 mins" },
+    { name: "Social Pass", type: "Social", rarity: "Rare", duration: "1 hour" },
+    { name: "Legendary Game Night", type: "Gaming", rarity: "Legendary", duration: "3 hours" },
+    { name: "Binge Pass", type: "Watch", rarity: "Legendary", duration: "3 episodes" },
+    { name: "Free Day Pass", type: "Rest", rarity: "Legendary", duration: "Rest of the day" }
+]
+
+function rollReward() {
+    let roll = Math.random() * 100
+    let rarity
+
+    if (roll < 10) {
+        rarity = "Legendary"
+    } else if (roll < 40) {
+        rarity = "Rare"
+    } else {
+        rarity = "Common"
+    }
+
+    let pool = REWARDS.filter(reward => reward.rarity === rarity)
+
+    return pool[Math.floor(Math.random() * pool.length)]
+}
+
 function loadSubjects() {
     let subjects = JSON.parse(localStorage.getItem("subjects")) || 
         ["Python", "C", "NetAcad", "Project", "School"]
