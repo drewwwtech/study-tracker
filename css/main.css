@@ -213,6 +213,23 @@
     margin-top: 8px;
 }
 
+#profile-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#profile-panel {
+    background: rgba(36, 40, 49, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-solid);
+    border-radius: 16px;
+    padding: 40px;
+    width: 500px;
+}
+
 #profile-header {
     display: flex;
     justify-content: space-between;
