@@ -387,3 +387,4 @@ document.getElementById("save-note-btn").addEventListener("click", () => {
     document.getElementById("note-input").value = ""
     loadNotes()
 })
+

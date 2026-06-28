@@ -112,7 +112,21 @@
             </div>
 
             <div id="settings-view" class="view hidden">
-                <h2>Settings</h2>
+                <div id="settings-panel">
+                    <h2>Settings</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Player Name</h3>
+                        <input type="text" id="name-input" placeholder="Enter your name...">
+                        <button id="save-name-btn">Save Name</button>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Danger Zone</h3>
+                        <p class="warning-text">This will delete all your progress permanently.</p>
+                        <button id="reset-btn">Reset All Data</button>
+                    </div>
+                </div>
             </div>
 
             <div id="session-modal" class="hidden">
