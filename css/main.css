@@ -534,3 +534,82 @@
     font-size: 0.7rem;
     cursor: pointer;
 }
+
+#settings-view {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 60px;
+}
+
+#settings-panel {
+    background: rgba(36, 40, 49, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-solid);
+    border-radius: 16px;
+    padding: 40px;
+    width: 500px;
+}
+
+#settings-panel h2 {
+    color: var(--primary-text-stroke);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.settings-group {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-solid);
+}
+
+.settings-group h3 {
+    color: var(--primary-body-text);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+#name-input {
+    width: 100%;
+    background: var(--primary-bg);
+    border: 1px solid var(--border-solid);
+    border-radius: 8px;
+    color: var(--primary-text-color);
+    padding: 10px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.8rem;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#save-name-btn {
+    background-color: var(--primary-text-stroke);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.warning-text {
+    color: var(--warning-text-color);
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+#reset-btn {
+    background-color: var(--warning-text-color);
+    color: var(--primary-text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    width: 100%;
+}

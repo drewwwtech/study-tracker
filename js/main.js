@@ -388,3 +388,20 @@ document.getElementById("save-note-btn").addEventListener("click", () => {
     loadNotes()
 })
 
+document.getElementById("save-name-btn").addEventListener("click", () => {
+    let newName = document.getElementById("name-input").value.trim()
+    if (!newName) return
+
+    hunter.name = newName
+    savePlayer()
+    document.getElementById("player-name").textContent = hunter.name
+    updateProfileView()
+    document.getElementById("name-input").value = ""
+})
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+    if (confirm("Are you sure? This will delete ALL your progress!")) {
+        localStorage.clear()
+        location.reload()
+    }
+})
