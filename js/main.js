@@ -408,6 +408,9 @@ document.getElementById("submit-session").addEventListener("click", () => {
     // update streak
     hunter.updateStreak()
 
+    hunter.totalSessions += 1
+    checkBadges(hunter.totalSessions)
+
     // update sidebar display
     document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
 
