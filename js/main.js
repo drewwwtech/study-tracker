@@ -36,7 +36,7 @@ const BADGES =[
         name: "Rising Hunter",
         icon: "fa-solid fa-bolt",
         description: "Reach Level 5",
-        condition: (player, sessions) => player.currentStreak >= 5,
+        condition: (player, sessions) => player.level >= 5,
         earned: false
     },
     {
@@ -354,6 +354,7 @@ updateProfileView()
 updateRewardsView()
 loadNotes()
 updateBadgesView()
+updateReportsView()
 
 document.getElementById("player-name").textContent = hunter.name
 document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
@@ -454,6 +455,7 @@ document.getElementById("submit-session").addEventListener("click", () => {
     updateProfileView()
     showReward(reward)
     updateRewardsView()
+    updateReportsView()
 })
 
 document.querySelectorAll('.nav-item').forEach(item => {
