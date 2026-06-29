@@ -14,6 +14,41 @@ const REWARDS = [
     { name: "Free Day Pass", type: "Rest", rarity: "Legendary", duration: "Rest of the day" }
 ]
 
+const BADGES =[ 
+    {
+        id: "first-session",
+        name: "First Step",
+        icon: "fa-solid fa-fire",
+        description: "Complete your first study session",
+        condition: (player, sessions) => sessions >= 1,
+        earned: false
+    },
+    {
+        id: "week-warrior",
+        name: "Week Warrior",
+        icon: "fa-solid fa-calendar-check",
+        description: "Reach a 7 day streak",
+        condition: (player, sessions) => player.currentStreak >= 7,
+        earned: false
+    },
+    {
+        id: "level-five",
+        name: "Rising Hunter",
+        icon: "fa-solid fa-bolt",
+        description: "Reach Level 5",
+        condition: (player, sessions) => player.currentStreak >= 5,
+        earned: false
+    },
+    {
+        id: "ten-sessions",
+        name: "Dedicated",
+        icon: "fa-solid fa-award",
+        description: "Complete 10 total sessions",
+        condition: (player, sessions) => sessions >= 10,
+        earned: false
+    }
+]
+
 function rollReward() {
     let roll = Math.random() * 100
     let rarity
