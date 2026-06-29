@@ -325,6 +325,7 @@ loadPlayer()
 updateProfileView()
 updateRewardsView()
 loadNotes()
+updateBadgesView()
 
 document.getElementById("player-name").textContent = hunter.name
 document.getElementById("player-level").textContent = `Lvl ${hunter.level}`
