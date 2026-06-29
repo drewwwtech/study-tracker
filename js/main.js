@@ -318,6 +318,34 @@ function updateBadgesView() {
     })
 }
 
+function updateReportsView() {
+    document.getElementById("report-sessions").textContent = hunter.totalSessions
+    document.getElementById("report-level").textContent = hunter.level
+    document.getElementById("report-xp").textContent = hunter.currentXP
+    document.getElementById("report-streak").textContent = `${hunter.currentStreak} days`
+    document.getElementById("report-longest").textContent = `${hunter.longestStreak} days`
+
+    // subjects
+    let reportSubjects = document.getElementById("report-subjects")
+    reportSubjects.innerHTML = ""
+    Object.entries(hunter.subjects).forEach(([subject, points]) => {
+        reportSubjects.innerHTML += `
+            <div class="report-item">
+                <span>${subject}</span>
+                <span>${points} pts</span>
+            </div>
+        `
+    })
+
+    // rewards summary
+    let earnedBadges = JSON.parse(localStorage.getItem("earnedBadges")) || []
+    document.getElementById("report-rewards-earned").textContent = 
+        hunter.unclaimedRewards.length + hunter.rewardHistory.length
+    document.getElementById("report-rewards-used").textContent = 
+        hunter.rewardHistory.length
+    document.getElementById("report-badges").textContent = earnedBadges.length
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
