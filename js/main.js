@@ -278,6 +278,44 @@ function loadNotes() {
 
 }
 
+function checkBadges(totalSessions) {
+    let earnedBadges = JSON.parse(localStorage.getItem("earnedBadges")) || []
+
+    BADGES.forEach(badge => {
+        if (!earnedBadges.includes(badge.id) && badge.condition(hunter, totalSessions)) {
+            earnedBadges.push(badge.id)
+            badge.earned = true
+        } else if (earnedBadges.includes(badge.id)) {
+            badge.earned = true
+        }
+    })
+
+    localStorage.setItem("earnedBadges", JSON.stringify(earnedBadges))
+    updateBadgesView()
+}
+
+function updateBadgesView() {
+    let earnedBadges = JSON.parse(localStorage.getItem("earnedBadges")) || []
+    let badgesList = document.getElementById("badges-list")
+    if (!badgesList) return
+
+    badgesList.innerHTML = ""
+
+    BADGES.forEach(badge => {
+        let isEarned = earnedBadges.includes(badge.id)
+        badgesList.innerHTML += `
+            <div class="badge-card ${isEarned ? 'earned' : 'locked'}">
+                <i class="${badge.icon} badge-icon"></i>
+                <div class="badge-info">
+                    <span class="badge-name">${badge.name}</span>
+                    <span class="badge-desc">${badge.description}</span>
+                </div>
+                ${isEarned ? '<span class="badge-status">✓ Earned</span>' : '<span class="badge-status locked-text">Locked</span>'}
+            </div>
+        `
+    })
+}
+
 loadSubjects()
 
 let hunter = new Player ("Hunter")
