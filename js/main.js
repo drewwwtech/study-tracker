@@ -99,7 +99,8 @@ function savePlayer() {
         longestStreak: hunter.longestStreak,
         lastStudyDate: hunter.lastStudyDate,
         rewardHistory: hunter.rewardHistory,
-        unclaimedRewards: hunter.unclaimedRewards
+        unclaimedRewards: hunter.unclaimedRewards,
+        totalSessions: hunter.totalSessions
     }))
 }
 
@@ -116,6 +117,7 @@ function loadPlayer() {
         hunter.lastStudyDate = saved.lastStudyDate
         hunter.rewardHistory = saved.rewardHistory
         hunter.unclaimedRewards = saved.unclaimedRewards
+        hunter.totalSessions = saved.totalSessions || 0
     }
 }
 

@@ -10,6 +10,7 @@ export class Player {
         this.lastStudyDate = null
         this.unclaimedRewards = []
         this.rewardHistory = []
+        this.totalSessions = 0
     }
 
     updateSubject(subjectName, amount) {
