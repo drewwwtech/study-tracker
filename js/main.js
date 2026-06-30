@@ -364,13 +364,27 @@ let pomodoro = new Timer()
 let intervalid = null
 
 document.getElementById("start-btn").addEventListener("click", () => {
-    if (pomodoro.isRunning) return // ignore clicking if its already running.
+    if (pomodoro.isRunning) return
 
     clearInterval(intervalid)
     pomodoro.start()
 
+    // play tick sound only during study mode
+    if (pomodoro.mode === "study") {
+        document.getElementById("tick-sound").play()
+    }
+
     intervalid = setInterval(() => {
         pomodoro.tick()
+
+        if (pomodoro.timeLeft === 0 && !pomodoro.isRunning) {
+            clearInterval(intervalid)
+            document.getElementById("tick-sound").pause()
+            document.getElementById("tick-sound").currentTime = 0
+            document.getElementById("chime-sound").play()
+            document.getElementById("continue-btn").classList.remove("hidden")
+        }
+
         document.getElementById("timer-mode").textContent =
             pomodoro.mode === "study" ? "Study Session" :
             pomodoro.mode === "shortBreak" ? "Short Break" : "Long Break"
@@ -383,12 +397,14 @@ document.getElementById("start-btn").addEventListener("click", () => {
 document.getElementById("pause-btn").addEventListener("click", () => {
     pomodoro.pause()
     clearInterval(intervalid)
+    document.getElementById("tick-sound").pause()
 })
 
 document.getElementById("end-btn").addEventListener("click", () => {
     pomodoro.pause()
     clearInterval(intervalid)
-    document.getElementById("session-modal").classList.remove("hidden") // to show modal
+    document.getElementById("tick-sound").pause()
+    document.getElementById("session-modal").classList.remove("hidden")
 })
 
 document.getElementById("subject-select").addEventListener("change", () => {
@@ -469,6 +485,8 @@ document.querySelectorAll('.nav-item').forEach(item => {
 
 document.getElementById("claim-reward-btn").addEventListener("click", () => {
     document.getElementById("reward-modal").classList.add("hidden")
+    document.getElementById("tick-sound").pause()
+    document.getElementById("tick-sound").currentTime = 0
 
     // reset timer for next session
     pomodoro.pause()
@@ -513,4 +531,35 @@ document.getElementById("reset-btn").addEventListener("click", () => {
         localStorage.clear()
         location.reload()
     }
+})
+
+document.getElementById("continue-btn").addEventListener("click", () => {
+    pomodoro.switchMode()
+    document.getElementById("continue-btn").classList.add("hidden")
+    
+    // restart the timer for the new mode
+    pomodoro.start()
+    
+    if (pomodoro.mode === "study") {
+        document.getElementById("tick-sound").play()
+    }
+    
+    intervalid = setInterval(() => {
+        pomodoro.tick()
+        
+        if (pomodoro.timeLeft === 0 && !pomodoro.isRunning) {
+            clearInterval(intervalid)
+            document.getElementById("tick-sound").pause()
+            document.getElementById("tick-sound").currentTime = 0
+            document.getElementById("chime-sound").play()
+            document.getElementById("continue-btn").classList.remove("hidden")
+        }
+        
+        document.getElementById("timer-mode").textContent =
+            pomodoro.mode === "study" ? "Study Session" :
+            pomodoro.mode === "shortBreak" ? "Short Break" : "Long Break"
+        document.getElementById("timer-display").textContent = pomodoro.getFormattedTime()
+        document.getElementById("session-count").textContent =
+            `Session completed: ${pomodoro.sessionCompleted}`
+    }, 1000)
 })

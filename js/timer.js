@@ -38,12 +38,13 @@ export class Timer {
     tick() {
         if (!this.isRunning) {
             return
-        }
-        this.timeLeft -= 1
-        if (this.timeLeft == 0) {
-            this.switchMode()
-        }
-        } 
+        } else {
+            this.timeLeft -= 1
+            if (this.timeLeft == 0) {
+                this.isRunning = false
+            }
+        }    
+    } 
 
     getFormattedTime() {
         let minutes = Math.floor(this.timeLeft / 60)
