@@ -472,6 +472,9 @@ document.getElementById("submit-session").addEventListener("click", () => {
     showReward(reward)
     updateRewardsView()
     updateReportsView()
+
+    document.getElementById("journal-learned").value = ""
+    document.getElementById("journal-difficulty").value = ""
 })
 
 document.querySelectorAll('.nav-item').forEach(item => {
