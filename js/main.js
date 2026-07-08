@@ -369,13 +369,21 @@ document.getElementById("start-btn").addEventListener("click", () => {
     clearInterval(intervalid)
     pomodoro.start()
 
-    // play tick sound only during study mode
+    let startTime = Date.now()
+    let initialTimeLeft = pomodoro.timeLeft  // capture real starting time
+
     if (pomodoro.mode === "study") {
         document.getElementById("tick-sound").play()
     }
 
     intervalid = setInterval(() => {
-        pomodoro.tick()
+        let elapsed = Math.floor((Date.now() - startTime) / 1000)
+        pomodoro.timeLeft = initialTimeLeft - elapsed
+
+        if (pomodoro.timeLeft <= 0) {
+            pomodoro.timeLeft = 0
+            pomodoro.isRunning = false
+        }
 
         if (pomodoro.timeLeft === 0 && !pomodoro.isRunning) {
             clearInterval(intervalid)
@@ -540,16 +548,24 @@ document.getElementById("continue-btn").addEventListener("click", () => {
     pomodoro.switchMode()
     document.getElementById("continue-btn").classList.add("hidden")
     
-    // restart the timer for the new mode
     pomodoro.start()
+
+    let startTime = Date.now()
+    let initialTimeLeft = pomodoro.timeLeft  // capture after switchMode sets new duration
     
     if (pomodoro.mode === "study") {
         document.getElementById("tick-sound").play()
     }
     
     intervalid = setInterval(() => {
-        pomodoro.tick()
-        
+        let elapsed = Math.floor((Date.now() - startTime) / 1000)
+        pomodoro.timeLeft = initialTimeLeft - elapsed
+
+        if (pomodoro.timeLeft <= 0) {
+            pomodoro.timeLeft = 0
+            pomodoro.isRunning = false
+        }
+
         if (pomodoro.timeLeft === 0 && !pomodoro.isRunning) {
             clearInterval(intervalid)
             document.getElementById("tick-sound").pause()
