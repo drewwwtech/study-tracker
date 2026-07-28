@@ -743,3 +743,20 @@
 .report-item span:last-child {
     color: var(--primary-text-stroke);
 }
+
+#continue-btn {
+    background-color: var(--primary-text-stroke);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-family: "Zen Dots", sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#continue-btn:hover {
+    opacity: 0.8;
+}
