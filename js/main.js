@@ -491,6 +491,10 @@ document.querySelectorAll('.nav-item').forEach(item => {
         let viewName = item.querySelector('a').textContent.toLowerCase()
         switchView(viewName)
         item.classList.add('active')
+
+        // close sidebar on mobile after selecting
+        document.getElementById("sidebar").classList.remove("open")
+        document.getElementById("sidebar-overlay").classList.remove("active")
     })
 })
 
@@ -542,6 +546,16 @@ document.getElementById("reset-btn").addEventListener("click", () => {
         localStorage.clear()
         location.reload()
     }
+})
+
+document.getElementById("hamburger-btn").addEventListener("click", () => {
+    document.getElementById("sidebar").classList.toggle("open")
+    document.getElementById("sidebar-overlay").classList.toggle("active")
+})
+
+document.getElementById("sidebar-overlay").addEventListener("click", () => {
+    document.getElementById("sidebar").classList.remove("open")
+    document.getElementById("sidebar-overlay").classList.remove("active")
 })
 
 document.getElementById("continue-btn").addEventListener("click", () => {
